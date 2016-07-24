@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="sdbs"
+  id="myeclipse.1469271198045"
+  context-root="/sdbs"
+  j2ee-spec="6.0"
+  archive="sdbs.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+
