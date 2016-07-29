@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.sd.entity.AttendenceEntity" table="attendence">
+        <id name="ID" column="a_ID" type="integer">
+            <generator class="assigned" />
+        </id>
+        <property name="workerID" column="workerID" />
+        <property name="ClockTime" column="clockTime" />
+    </class>
+    
+    <class name="com.sd.entity.OtherEntity" table="others">
+    <id name="ID" column="o_id">
+    	 <generator class="assigned" />
+    </id>
+    <property name="officetime" column="officetime"></property>
+    <property name="offworktime" column="offworktime"></property>
+    <property name="latetime" column="latetime"></property>
+    <property name="leavetime" column="leavetime"></property>
+    </class>
+    
+     <class name="com.sd.entity.WorkerEntity" table="workinfo">
+    <id name="workerID" column="workerID">
+    	 <generator class="assigned" />
+    </id>
+    <property name="workerName" column="workerName"></property>
+    </class>
+</hibernate-mapping>

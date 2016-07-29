@@ -1,53 +1,82 @@
 package com.sd.content;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/**
+ * 考勤类
+ * 
+ * author zhanghao
+ * 
+ */
 public class AttendenceTable {
-	private String workerID;
+	// 员工Id
+	private Integer workerID;
+	// 员工姓名
 	private String workerName;
-	private String mounth;
-	private String officetime;
-	private String offworktime;
-	private String worktime;
+	// 上班时间
+	private Date officeTime;
+	// 下班时间
+	private Date offWorkTime;
+	// 工作时长
+	private String workTime;
+	// 是否迟到早退
 	private String absent;
-	public String getWorkerID() {
-		return workerID;
-	}
-	public void setWorkerID(String workerID) {
-		this.workerID = workerID;
-	}
+
 	public String getWorkerName() {
 		return workerName;
 	}
+
 	public void setWorkerName(String workerName) {
 		this.workerName = workerName;
 	}
-	public String getMounth() {
-		return mounth;
+
+	public Date getOfficeTime() {
+		return officeTime;
 	}
-	public void setMounth(String mounth) {
-		this.mounth = mounth;
+
+	public void setOfficeTime(Date officeTime) {
+		this.officeTime = officeTime;
 	}
-	public String getOfficetime() {
-		return officetime;
+
+	public Date getOffWorkTime() {
+		return offWorkTime;
 	}
-	public void setOfficetime(String officetime) {
-		this.officetime = officetime;
+
+	public void setOffWorkTime(Date offWorkTime) {
+		this.offWorkTime = offWorkTime;
 	}
-	public String getOffworktime() {
-		return offworktime;
+
+	public String getWorkTime() {
+		return workTime;
 	}
-	public void setOffworktime(String offworktime) {
-		this.offworktime = offworktime;
+
+	public void setWorkTime(String workTime) {
+		this.workTime = workTime;
 	}
-	public String getWorktime() {
-		return worktime;
-	}
-	public void setWorktime(String worktime) {
-		this.worktime = worktime;
-	}
+
 	public String getAbsent() {
 		return absent;
 	}
+
 	public void setAbsent(String absent) {
 		this.absent = absent;
 	}
+
+	public Integer getWorkerID() {
+		return workerID;
+	}
+
+	public void setWorkerID(Integer workerID) {
+		this.workerID = workerID;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String result="员工ID:"+this.workerID+" 姓名:"+this.workerName+" 上班时间:"+this.officeTime+
+				" 下班时间:"+this.offWorkTime+" 是否迟到早退:"+this.absent;
+		return result;
+	}
+	
 }

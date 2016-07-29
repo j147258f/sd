@@ -1,48 +1,77 @@
 package com.sd.entity;
 
+import java.util.Date;
+
 /**
  * 对应数据库的参数表
  * 
+ * author zhanghao
+ * 
  */
 public class OtherEntity {
-	//旷工多久算旷工半天
-	String absenttime;
-	//公司规定的上班时间
-	String officetime;
-	//公司规定的下班时间
-	String offworktime;
-	//公司规定的迟到多久算迟到；
-	String latetime;
-	//公司规定的早退多久算早退;
-	String leavetime;
+
+	// ID
+	private Integer ID;
+	// 旷工多久算旷工半天
+	private String absenttime;
+	// 公司规定的上班时间
+	private Date officetime;
+	// 公司规定的下班时间
+	private Date offworktime;
+	// 公司规定的迟到多久算迟到；
+	private Date latetime;
+	// 公司规定的早退多久算早退;
+	private Date leavetime;
+
+	public Integer getID() {
+		return ID;
+	}
+
+	public void setID(Integer iD) {
+		ID = iD;
+	}
+
 	public String getAbsenttime() {
 		return absenttime;
 	}
+
 	public void setAbsenttime(String absenttime) {
 		this.absenttime = absenttime;
 	}
-	public String getOfficetime() {
+
+	public Date getOfficetime() {
 		return officetime;
 	}
-	public void setOfficetime(String officetime) {
+
+	public void setOfficetime(Date officetime) {
 		this.officetime = officetime;
 	}
-	public String getOffworktime() {
+
+	public Date getOffworktime() {
 		return offworktime;
 	}
-	public void setOffworktime(String offworktime) {
+
+	public void setOffworktime(Date offworktime) {
 		this.offworktime = offworktime;
 	}
-	public String getLatetime() {
+
+	public Date getLatetime() {
 		return latetime;
 	}
-	public void setLatetime(String latetime) {
+
+	public void setLatetime(Date latetime) {
 		this.latetime = latetime;
 	}
-	public String getLeavetime() {
+
+	public Date getLeavetime() {
 		return leavetime;
 	}
-	public void setLeavetime(String leavetime) {
+
+	public void setLeavetime(Date leavetime) {
 		this.leavetime = leavetime;
+	}
+	
+	public OtherEntity() {
+		
 	}
 }

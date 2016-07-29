@@ -4,12 +4,12 @@ import java.text.ParseException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sd.content.AttendenceTable;
 import com.sd.service.AttendenceTableService;
 import com.sd.service.WorkTimeService;
 
@@ -92,29 +92,30 @@ public class AttendenceController {
 	 * 获取员工考勤表
 	 * 
 	 * @param workerID 员工id
-	 * @param mounth 指定的月份
+	 * @param month 指定的月份
+	 * @param year 指定年
 	 * @return json格式的数据
 	 * @throws ParseException 
 	 */
-	@RequestMapping(value = "/attendencetable", method = RequestMethod.GET)
-	public @ResponseBody
-	Object getattendencetable(@RequestParam("workerID") String workerID,
-			@RequestParam("mounth") String mounth) throws ParseException {
+	@RequestMapping(value = "/attendencetable/{workerID}", method = RequestMethod.GET)
+	public @ResponseBody Object getattendencetable(@PathVariable("workerID") Integer workerID,
+			@RequestParam("year") Integer year,@RequestParam("month") Integer month) throws ParseException {
 		AttendenceTableService ats = new AttendenceTableService();
-		return ats.buildtableformounth(workerID, mounth);
+		return ats.buildtableformonth(workerID, month, year);
 	}
 	
 	/**
 	 * 获取全体员工异常考勤表
 	 * 
-	 * @param mounth 指定的月份
+	 * @param year 指定年
+	 * @param month 指定的月份
 	 * @return json格式的数据
 	 * @throws ParseException 
 	 */
 	@RequestMapping(value = "/attendencealltable", method = RequestMethod.GET)
-	public @ResponseBody Object getattendencealltable(@RequestParam("mounth") String mounth) throws ParseException {
+	public @ResponseBody Object getattendencealltable(@RequestParam("year") Integer year,@RequestParam("month") Integer month) throws ParseException {
 		AttendenceTableService ats = new AttendenceTableService();
-		return ats.buildtableforexception(mounth);
+		return ats.buildtableforexception(year, month);
 	}
 
 }
