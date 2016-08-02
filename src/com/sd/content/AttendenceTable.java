@@ -19,9 +19,9 @@ public class AttendenceTable {
 	// 下班时间
 	private Date offWorkTime;
 	// 工作时长
-	private String workTime;
+	private Integer workTime;
 	// 是否迟到早退
-	private String absent;
+	private String absent="";
 
 	public String getWorkerName() {
 		return workerName;
@@ -47,11 +47,11 @@ public class AttendenceTable {
 		this.offWorkTime = offWorkTime;
 	}
 
-	public String getWorkTime() {
+	public Integer getWorkTime() {
 		return workTime;
 	}
 
-	public void setWorkTime(String workTime) {
+	public void setWorkTime(Integer workTime) {
 		this.workTime = workTime;
 	}
 
@@ -75,7 +75,7 @@ public class AttendenceTable {
 	public String toString() {
 		// TODO Auto-generated method stub
 		String result="员工ID:"+this.workerID+" 姓名:"+this.workerName+" 上班时间:"+this.officeTime+
-				" 下班时间:"+this.offWorkTime+" 是否迟到早退:"+this.absent;
+				" 下班时间:"+this.offWorkTime+" 是否迟到早退:"+this.absent+" 工作时长:"+this.workTime;
 		return result;
 	}
 	

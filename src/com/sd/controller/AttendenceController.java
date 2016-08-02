@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sd.service.AttendenceTableService;
+import com.sd.service.ReAttendenceService;
 import com.sd.service.WorkTimeService;
 
 /**
@@ -22,6 +23,18 @@ import com.sd.service.WorkTimeService;
 @Controller
 @RequestMapping("/attendence")
 public class AttendenceController {
+	
+	/**
+	 * 手动补签
+	 * 
+	 * @param model
+	 * @return json格式的数据
+	 */
+	@RequestMapping(value = "/reAttendence/{workerID}", method = RequestMethod.POST)
+	public void reAttendence(@PathVariable("workerID") Integer workerID) {
+		ReAttendenceService ras = new ReAttendenceService();
+		ras.reAttendence(workerID);
+	}
 
 	/**
 	 * 获取上下班时间
@@ -117,5 +130,4 @@ public class AttendenceController {
 		AttendenceTableService ats = new AttendenceTableService();
 		return ats.buildtableforexception(year, month);
 	}
-
 }

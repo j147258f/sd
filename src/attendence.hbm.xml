@@ -6,7 +6,7 @@
 <hibernate-mapping>
     <class name="com.sd.entity.AttendenceEntity" table="attendence">
         <id name="ID" column="a_ID" type="integer">
-            <generator class="assigned" />
+            <generator class="increment" />
         </id>
         <property name="workerID" column="workerID" />
         <property name="ClockTime" column="clockTime" />

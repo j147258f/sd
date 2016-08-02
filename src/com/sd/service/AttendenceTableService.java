@@ -31,7 +31,7 @@ public class AttendenceTableService {
 	 * @param year 年
 	 * @return 考勤信息集合
 	 */
-	public List<AttendenceTable> buildtableformonth(Integer workerID,
+	public List[] buildtableformonth(Integer workerID,
 			Integer month, Integer year) throws ParseException {
 
 		// 若没指定年月，则为当前年月
@@ -57,7 +57,11 @@ public class AttendenceTableService {
 
 		// 调用rule获得工作日集合
 		List<Date> weekDaysList = Rule.getWeekDays(year, month);
-		return this.getTable(workerID, aelist, we.getWorkerName(), oe, weekDaysList)[0];
+		List[] result=new List[2];
+		List[] list=this.getTable(workerID, aelist, we.getWorkerName(), oe, weekDaysList);
+		result[0]=list[0];
+		result[1]=list[2];
+		return result;
 	}
 
 	/**
@@ -103,6 +107,8 @@ public class AttendenceTableService {
 	private List[] getTable(Integer workerID, List<AttendenceEntity> aelist,
 			String workerName, OtherEntity oe, List<Date> weekDaysList)
 			throws ParseException {
+		int hours=0;
+		List<Integer> allHour=new ArrayList<Integer>();
 		List<AttendenceTable> atlist = new ArrayList<AttendenceTable>();
 		List<AttendenceTable> exceptiongList = new ArrayList<AttendenceTable>();
 		for (Date workday : weekDaysList) {
@@ -131,19 +137,22 @@ public class AttendenceTableService {
 			}
 			// 设定是否早退
 			if (Rule.isLeaveEarly(offworktime,
-					Tool.getLateTiming(oe.getLatetime(), oe.getLeavetime()))) {
+					Tool.getLateTiming(oe.getLatetime(), oe.getLeavetime()),workday)) {
 				attendenceTable.setAbsent(attendenceTable.getAbsent() + "早退");
 			}
-			atlist.add(attendenceTable);
 			if (!attendenceTable.getAbsent().isEmpty()) {
-				{
 					exceptiongList.add(attendenceTable);
-				}
+			}else{
+				attendenceTable.setWorkTime(Tool.getWorkTime(officetime, offworktime));
+				hours=hours+attendenceTable.getWorkTime();
 			}
+			atlist.add(attendenceTable);
 		}
-		List[] list=new List[2];
+		allHour.add(hours);
+		List[] list=new List[3];
 		list[0]=atlist;
 		list[1]=exceptiongList;
+		list[2]=allHour;
 		return list;
 	}
 }

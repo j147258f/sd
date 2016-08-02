@@ -36,4 +36,20 @@ public class Tool {
 		ca.add(Calendar.SECOND, second);
 		return sdfTime.format(ca.getTime());
 	}
+	/**
+	 * 通过上下班时间得到当天工作时长
+	 * 
+	 * @param date1 上班时间
+	 * @param date2 下班时间
+	 * @return 具体迟到时刻
+	 */
+	public static Integer getWorkTime(Date date1, Date date2){
+		Calendar cal1=Calendar.getInstance();
+		cal1.setTime(date1);
+		Calendar cal2=Calendar.getInstance();
+		cal2.setTime(date2);
+		long l=(cal2.getTimeInMillis()-cal1.getTimeInMillis())/1000/3600;
+		Integer hour=new Long(l).intValue();
+		return hour;
+	}
 }

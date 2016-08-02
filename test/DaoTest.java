@@ -106,6 +106,14 @@ public class DaoTest {
 			System.out.println(ae.size());
 			dao.close();
 		}
-
+		
+	//DAO层reAttendence方法测试
+		@Test
+		public void testreAttendence(){
+			TempDAO dao=new TempDAO();
+			dao.start();
+			dao.reAttendence(1);
+			dao.close();
+		}
 }
 

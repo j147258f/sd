@@ -1,5 +1,6 @@
 package com.sd.dao;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -136,5 +137,17 @@ public class TempDAO {
 		query.setString(1, endtime);
 		List<AttendenceEntity> aelist = query.list();
 		return aelist;
+	}
+	
+	/**
+	 * 根据年月查询打卡信息表
+	 * 
+	 * @param workID 员工ID
+	 */
+	public void reAttendence(Integer workID){
+		AttendenceEntity ae=new AttendenceEntity();
+		ae.setWorkerID(workID);
+		ae.setClockTime(new Date());
+		session.save(ae);
 	}
 }

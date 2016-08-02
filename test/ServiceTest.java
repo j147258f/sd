@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import com.sd.content.AttendenceTable;
 import com.sd.service.AttendenceTableService;
+import com.sd.service.ReAttendenceService;
 
 public class ServiceTest {
 
@@ -12,8 +13,8 @@ public class ServiceTest {
 	@Test
 	public void testBuildTable() throws ParseException {
 		AttendenceTableService a = new AttendenceTableService();
-		List<AttendenceTable> atlist = a.buildtableformonth(1, 7, 2016);
-		for (AttendenceTable aa : atlist) {
+		List<Integer> atlist = a.buildtableformonth(1, 7, 2016)[1];
+		for (Integer aa : atlist) {
 			System.out.println(aa);
 		}
 	}
@@ -26,5 +27,13 @@ public class ServiceTest {
 		for (AttendenceTable aa : atlist) {
 			System.out.println(aa);
 		}
+	}
+	
+	//ReAttendenceService方法测试
+	@Test
+	public void testReAttendenceService(){
+		ReAttendenceService ras = new ReAttendenceService();
+		ras.reAttendence(1);
+		
 	}
 }

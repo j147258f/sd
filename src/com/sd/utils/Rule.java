@@ -45,10 +45,13 @@ public class Rule {
 	 * @param offworktime 公司规定的最早下班时间
 	 * @return true 早退 false 没早退
 	 */
-	public static boolean isLeaveEarly(Date factOffworktime, String offworktime)
+	public static boolean isLeaveEarly(Date factOffworktime, String offworktime,Date workDay)
 			throws ParseException {
 		if (factOffworktime == null) {
 			return true;
+		}
+		if(factOffworktime.after(workDay)){
+			return false;
 		}
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		String temp = sdf.format(factOffworktime);
@@ -70,6 +73,9 @@ public class Rule {
 		cal.set(Calendar.YEAR, year);
 		cal.set(Calendar.MONTH, month - 1);
 		cal.set(Calendar.DATE, 1);
+		cal.set(Calendar.HOUR, -6);
+		cal.set(Calendar.MINUTE, 0);
+		cal.set(Calendar.SECOND, 0);
 		while (cal.get(Calendar.YEAR) == year
 				&& cal.get(Calendar.MONTH) < month) {
 			int day = cal.get(Calendar.DAY_OF_WEEK);
@@ -93,28 +99,29 @@ public class Rule {
 	 */
 	public static Date[] getWorkTime(Integer workerID, Date workday,
 			List<Date> weekdaysList, List<AttendenceEntity> attendenceList) {
-		String officetime = null;
-		String offworktime = null;
 		Date officeDate = null;
 		Date offWorkTime = null;
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
-		String workDayToString = sdf.format(workday);
 
 		for (AttendenceEntity ae : attendenceList) {
 			if (workerID != ae.getWorkerID()) {
 				continue;
 			}
-			String clocktime = ae.getOnlyTime();
-			String clockday = ae.getOnlyDay();
-			if (clockday.equals(workDayToString)) {
-				if (officetime == null) {
-					officetime = clocktime;
+			Calendar clock = Calendar.getInstance();
+			clock.setTime(ae.getClockTime());
+			Calendar workDayC = Calendar.getInstance();
+			workDayC.setTime(workday);
+			Calendar workDayAfter= Calendar.getInstance();
+			workDayAfter.setTime(workday);
+			workDayAfter.add(Calendar.DATE, 1);
+			if(clock.after(workDayC)&&clock.before(workDayAfter)){
+				if (officeDate == null) {
 					officeDate = ae.getClockTime();
 				} else {
-					offworktime = clocktime;
 					offWorkTime = ae.getClockTime();
 				}
-			} else {
+			}
+			
+			else {
 				continue;
 			}
 		}
