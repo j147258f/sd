@@ -144,10 +144,10 @@ public class TempDAO {
 	 * 
 	 * @param workID 员工ID
 	 */
-	public void reAttendence(Integer workID){
+	public void reAttendence(Integer workID,Date date){
 		AttendenceEntity ae=new AttendenceEntity();
 		ae.setWorkerID(workID);
-		ae.setClockTime(new Date());
+		ae.setClockTime(date);
 		session.save(ae);
 	}
 }

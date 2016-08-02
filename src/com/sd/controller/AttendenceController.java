@@ -1,6 +1,7 @@
 package com.sd.controller;
 
 import java.text.ParseException;
+import java.util.Date;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,9 +32,9 @@ public class AttendenceController {
 	 * @return json格式的数据
 	 */
 	@RequestMapping(value = "/reAttendence/{workerID}", method = RequestMethod.POST)
-	public void reAttendence(@PathVariable("workerID") Integer workerID) {
+	public void reAttendence(@PathVariable("workerID") Integer workerID,Date date) {
 		ReAttendenceService ras = new ReAttendenceService();
-		ras.reAttendence(workerID);
+		ras.reAttendence(workerID,date);
 	}
 
 	/**

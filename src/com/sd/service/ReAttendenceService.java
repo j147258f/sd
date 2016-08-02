@@ -1,5 +1,7 @@
 package com.sd.service;
 
+import java.util.Date;
+
 import com.sd.dao.TempDAO;
 
 /**
@@ -13,11 +15,12 @@ public class ReAttendenceService {
 	 * 根据员工ID 补签
 	 * 
 	 * @param workID 员工ID
+	 * @param date 补签日期
 	 */
-	public void reAttendence(Integer workID){
+	public void reAttendence(Integer workID,Date date){
 		TempDAO dao=new TempDAO();
 		dao.start();
-		dao.reAttendence(workID);
+		dao.reAttendence(workID,date);
 		dao.close();
 	}
 }
